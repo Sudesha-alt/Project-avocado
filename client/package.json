@@ -14,6 +14,12 @@
     "@mui/material": "^6.4.0",
     "@mui/x-data-grid": "^7.23.6",
     "@reduxjs/toolkit": "^2.5.0",
+<<<<<<< HEAD
+=======
+
+    "aws-amplify": "^6.12.1",
+
+>>>>>>> e7af5c637c712f4977c48fd5da07dcbdd0b17d3d
     "axios": "^1.7.9",
     "date-fns": "^4.1.0",
     "dotenv": "^16.4.7",
