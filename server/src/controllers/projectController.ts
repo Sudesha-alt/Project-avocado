@@ -12,7 +12,10 @@ try {
 }
 };
 
-export const createProject = async (req: Request, res: Response): Promise<void> => {
+export const createProject = async (
+    req: Request, 
+    res: Response
+): Promise<void> => {
     const { name, description, startDate, endDate } = req.body;
     try {
         const newProject = await prisma.project.create({
