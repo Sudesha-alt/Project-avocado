@@ -107,4 +107,4 @@ invalidatesTags: (result, error, {taskId}) =>
 export const { useGetProjectsQuery, 
     useCreateProjectMutation,
 useGetTasksQuery,
-useCreateTaskMutation} = api;
+useCreateTaskMutation, useUpdateTaskStatusMutation} = api;
