@@ -23,7 +23,7 @@ export const createProject = async (
                 name,
                 description,
                 startDate,
-                endDate
+                endDate,
             }
         });
         res.status(201).json(newProject);
