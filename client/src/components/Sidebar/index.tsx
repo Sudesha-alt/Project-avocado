@@ -2,21 +2,26 @@
 import React from 'react';
 import { useState } from 'react';
 import Image from 'next/image';
-import { AlertCircle, AlertOctagon, AlertTriangle, Briefcase, ChevronDown, ChevronRight, ChevronUp, Home, Icon, Layers3Icon, LockIcon, LucideIcon, Search, Settings, ShieldAlert, Star, User, Users, X } from 'lucide-react';
+import { AlertCircle, 
+    AlertOctagon, AlertTriangle, Briefcase, ChevronDown, ChevronUp, Home, Layers3Icon, LockIcon, LucideIcon, Search, Settings, ShieldAlert, User, Users, X } from 'lucide-react';
 import { usePathname } from 'next/navigation';
-import { useAppDispatch } from '../redux';
-import { useAppSelector } from '../redux';
+import { useAppDispatch } from '@/app/redux';
+import { useAppSelector } from '@/app/redux';
 import Link from 'next/link';
 import { setIsSidebarCollapsed } from '@/state';
+import { useGetProjectsQuery } from '@/state/api';
+
 
 
 const Sidebar = () => {
     const [showProjects, setShowProjects] = useState(true);
     const [showPriority, setShowPriority] = useState(true);
 
+    
+    const { data: projects }  = useGetProjectsQuery();
     const dispatch = useAppDispatch();
-    const isSidebarCollapsed = useAppSelector(
-        (state) => state.global.isSidebarCollapsed,
+const isSidebarCollapsed = useAppSelector(
+    (state: { global: { isSidebarCollapsed: boolean } }) => state.global.isSidebarCollapsed,
 );
 
     const sidebarclassNames = `fixed flex flex-col h-[100%] justify-between shadow-xl
@@ -44,7 +49,7 @@ const Sidebar = () => {
                 <Image src="/logo.png" alt="Logo" width={40} height={40} />
             <div>
             <h3 className="text-md font-bold tracking-wide dark:text-gray-200">
-                Sudesha's Team
+                Nayanika Team
             </h3>
             <div className="mt-1 flex items-start gap-2">
                 <LockIcon className="mt-[0.1rem] h-3 w-3 text-gray-500 dark:text-gray-400" />
@@ -61,11 +66,32 @@ const Sidebar = () => {
                 <SidebarLink icon={Users} label="Teams" href="/teams" />
             </nav>
 
-            <button onClick={() => setShowProjects((prev) => !prev)}
-                className="flex items-center justify-between text-gray-500 px-8 py-3">
-                    <span className="">Projects</span>
-                    {showProjects ? <ChevronDown className="h-5 w-5" /> : <ChevronUp className="h-5 w-5" />}
-            </button>
+            <button
+  onClick={() => setShowProjects((prev) => !prev)}
+  className="flex items-center justify-between text-gray-500 px-8 py-3"
+>
+  <span>Projects</span>
+  {showProjects ? <ChevronDown className="h-5 w-5" /> : <ChevronUp className="h-5 w-5" />}
+</button>
+
+{showProjects && (
+  <>
+    {projects && projects.length > 0 ? (
+      projects.map((project) => (
+        <SidebarLink
+          key={project.id}
+          icon={Briefcase}
+          label={project.name}
+          href={`/projects/${project.id}`}
+        />
+      ))
+    ) : (
+      <p className="px-8 py-3 text-gray-500">No projects available</p>
+    )}
+  </>
+)}
+
+
 
             <button onClick={() => setShowPriority((prev) => !prev)}
                 className="flex items-center justify-between text-gray-500 px-8 py-3">
@@ -120,4 +146,4 @@ return (
 }
 
 
-export default Sidebar
+export default Sidebar;

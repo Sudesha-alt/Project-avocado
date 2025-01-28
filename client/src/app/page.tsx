@@ -1,9 +1,11 @@
 import Image from "next/image";
+import Project from "@/app/projects/[id]/page";
+
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-24">
-      <h1 className="text-4xl font-bold">Hello World</h1>
-    </main>
+    <div>
+      <Project params={{id: "1"}} />
+    </div>
   );
 }
