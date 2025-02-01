@@ -17,7 +17,7 @@ export enum Status{
 
 export enum Priority{
      Urgent = "Urgent",
-     HIgh = "High",
+     High = "High",
      Medium = "Medium",
      Low = "Low",
      Backlog = "Backlog"
