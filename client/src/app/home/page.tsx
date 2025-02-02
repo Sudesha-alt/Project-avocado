@@ -40,7 +40,7 @@ const HomePage = () => {
     data: tasks,
     isLoading: tasksLoading,
     isError: tasksError,
-  } = useGetTasksQuery({ projectId: parseInt("1") });
+  } = useGetTasksQuery({ projectId: parseInt("4") });
   const { data: projects, isLoading: isProjectsLoading } =
     useGetProjectsQuery();
 
