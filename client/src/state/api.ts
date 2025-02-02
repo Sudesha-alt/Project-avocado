@@ -46,6 +46,21 @@ export interface Task{
     attachments?: Attachment[];
 }
 
+export enum Status{
+    ToDo = "To Do",
+    WorkInProgress = "Work In Progress",
+    UnderReview = "Under Review",
+    Completed = "Completed"
+}
+
+export enum Priority{
+     Urgent = "Urgent",
+     HIgh = "High",
+     Medium = "Medium",
+     Low = "Low",
+     Backlog = "Backlog"
+}
+
 
 
 export const api = createApi({
@@ -76,7 +91,7 @@ export const api = createApi({
        method: "POST",
        body: task
 }),
-invalidatesTags: ["Tasks"]
+invalidatesTags: ["Tasks"],
 }),
 
 updateTaskStatus: build.mutation<Task, {taskId: number; status: string}>({
