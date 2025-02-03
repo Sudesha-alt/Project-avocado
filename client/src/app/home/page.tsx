@@ -40,7 +40,7 @@ const HomePage = () => {
     data: tasks,
     isLoading: tasksLoading,
     isError: tasksError,
-  } = useGetTasksQuery({ projectId: parseInt("4") });
+  } = useGetTasksQuery({ projectId: parseInt("1") });
   const { data: projects, isLoading: isProjectsLoading } =
     useGetProjectsQuery();
 
@@ -106,12 +106,9 @@ const HomePage = () => {
                 stroke={chartColors.barGrid}
               />
               <XAxis dataKey="name" stroke={chartColors.text} />
-              <YAxis stroke={chartColors.text} />
+              <YAxis stroke={chartColors.text} allowDecimals={false} />
               <Tooltip
-                contentStyle={{
-                  width: "min-content",
-                  height: "min-content",
-                }}
+                contentStyle={{ width: "min-content", height: "min-content" }}
               />
               <Legend />
               <Bar dataKey="count" fill={chartColors.bar} />
