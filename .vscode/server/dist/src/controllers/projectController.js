@@ -18,7 +18,7 @@ const getProjects = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         res.status(200).json(projects);
     }
     catch (error) {
-        res.status(500).json({ message: `Error fetching a project: ${error.message}` });
+        res.status(500).json({ error: "Could not fetch projects" });
     }
 });
 exports.getProjects = getProjects;
@@ -30,13 +30,13 @@ const createProject = (req, res) => __awaiter(void 0, void 0, void 0, function* 
                 name,
                 description,
                 startDate,
-                endDate,
+                endDate
             }
         });
         res.status(201).json(newProject);
     }
     catch (error) {
-        res.status(500).json({ message: `Error creating a project: ${error.message}` });
+        res.status(500).json({ error: error.message });
     }
 });
 exports.createProject = createProject;
