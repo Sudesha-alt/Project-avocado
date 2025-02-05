@@ -1,26 +1,44 @@
-import React from "react";
+"use client";
 
-type TabType = "Board" | "List" | "Timeline" | "Table";
+import React, { useState } from "react";
+import ProjectHeader from "@/app/projects/ProjectHeader";
+import Board from "../BoardView";
+import List from "../ListView";
+import Timeline from "../TimelineView";
+import Table from "../TableView";
+import ModalNewTask from "@/components/ModalNewTask";
 
-type ProjectHeaderProps = {
-  activeTab: TabType;
-  setActiveTab: (tab: TabType) => void; // Fix: Enforcing correct type
+type Props = {
+  params: { id: string };
 };
 
-const ProjectHeader = ({ activeTab, setActiveTab }: ProjectHeaderProps) => {
+const Project = ({ params }: Props) => {
+  const { id } = params;
+  const [activeTab, setActiveTab] = useState("Board");
+  const [isModalNewTaskOpen, setIsModalNewTaskOpen] = useState(false);
+
   return (
-    <div className="mb-5 flex space-x-4">
-      {(["Board", "List", "Timeline", "Table"] as TabType[]).map((tab) => (
-        <button
-          key={tab}
-          onClick={() => setActiveTab(tab)}
-          className={`px-4 py-2 rounded ${activeTab === tab ? "bg-blue-500 text-white" : "bg-gray-200"}`}
-        >
-          {tab}
-        </button>
-      ))}
+    <div>
+      <ModalNewTask
+        isOpen={isModalNewTaskOpen}
+        onClose={() => setIsModalNewTaskOpen(false)}
+        id={id}
+      />
+      <ProjectHeader activeTab={activeTab} setActiveTab={setActiveTab} />
+      {activeTab === "Board" && (
+        <Board id={id} setIsModalNewTaskOpen={setIsModalNewTaskOpen} />
+      )}
+      {activeTab === "List" && (
+        <List id={id} setIsModalNewTaskOpen={setIsModalNewTaskOpen} />
+      )}
+      {activeTab === "Timeline" && (
+        <Timeline id={id} setIsModalNewTaskOpen={setIsModalNewTaskOpen} />
+      )}
+      {activeTab === "Table" && (
+        <Table id={id} setIsModalNewTaskOpen={setIsModalNewTaskOpen} />
+      )}
     </div>
   );
 };
 
-export default ProjectHeader;
+export default Project;
