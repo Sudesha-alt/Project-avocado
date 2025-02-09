@@ -3,7 +3,7 @@ import { Authenticator } from "@aws-amplify/ui-react";
 import { Amplify } from "aws-amplify";
 import { signOut } from 'aws-amplify/auth';
 import "@aws-amplify/ui-react/styles.css";
-import awsmobile from "./aws-exports"; // Import AWS configurations
+import awsmobile from "../../aws-exports"; // Import AWS configurations
 
 // Configure Amplify with AWS exports
 Amplify.configure(awsmobile);
